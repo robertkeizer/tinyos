@@ -1,6 +1,3 @@
-#ifndef __KERNEL
-#define __KERNEL
-
 int k_video_char=0;
 int k_video_line=0;
 
@@ -38,4 +35,3 @@ void kclr( ){
 	k_video_char=0;
 	k_video_line=0;
 }
-#endif
