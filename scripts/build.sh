@@ -4,8 +4,11 @@ if [ ! -d "src/" ]; then
 	exit 1;
 fi;
 
-nasm -f elf -o build/loader.o src/loader.s
-gcc -o build/kernel.o -c src/kernel.c -Wall -Wextra -nostdlib -nostartfiles -nodefaultlibs
-ld -T src/linker.ld -o build/kernel.bin build/loader.o build/kernel.o
-
+# into src/
+cd src
+nasm -f elf -o ../build/loader.o loader.s
+gcc -o ../build/kernel.o -c kernel.c -Wall -Wextra -nostdlib -nostartfiles -nodefaultlibs
+ld -T linker.ld -o ../build/kernel.bin ../build/loader.o ../build/kernel.o
+cd ../
+# back out of src/
 cat grub/stage1 grub/stage2 grub/pad build/kernel.bin > build/floppy.img
