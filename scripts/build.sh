@@ -7,7 +7,7 @@ fi;
 # into src/
 cd src
 nasm -f elf -o ../build/loader.o loader.s
-gcc -o ../build/kernel.o -c kernel.c -Wall -Wextra -nostdlib -nostartfiles -nodefaultlibs
+gcc -o ../build/kernel.o -c kernel.c -Wall -Wextra -nostdlib -nostartfiles -nodefaultlibs -std=c99
 ld -T linker.ld -o ../build/kernel.bin ../build/loader.o ../build/kernel.o
 cd ../
 # back out of src/
