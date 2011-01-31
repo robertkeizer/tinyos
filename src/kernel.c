@@ -1,5 +1,7 @@
 #include "kernel.h"
-#include "mem.h"
+#include "kprint.h"
+#include "concat.h"
+#include "strlen.h"
 
 void kmain( void *mbd, unsigned int magic ){
 	if ( magic != 0x2BADB002 ){
@@ -8,15 +10,6 @@ void kmain( void *mbd, unsigned int magic ){
 
 	kclr();
 	kprint( "Starting up.." );
-
-	if( k_memory_a20_enable( ) == 0 ){
-		kprint( "\n" );
-		kprint( "Enabled a20line" );
-		kprint( "\n" );
-	}else{
-		kprint( "\n" );
-		kprint( "Failure to enable a20line" );
-		kprint( "\n" );
-	}
-	
+	kprint( "Size of 'abc' is: " );
+	kprint( (char *)strlen( "abc" ) );
 }
