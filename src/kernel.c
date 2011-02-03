@@ -1,6 +1,7 @@
 #include "multiboot.h"
 #include "kprint.h"
 #include "concat.h"
+#include "substr.h"
 
 void kmain( void* mbd, unsigned long magic ){
 
@@ -9,7 +10,7 @@ void kmain( void* mbd, unsigned long magic ){
 		for( ;; );
 	};
 
-	kprint( concat( "test", "ing" ) );
+	kprint( substr( "TEST", 2, 4 ) );
 
 	for( ;; );
 }

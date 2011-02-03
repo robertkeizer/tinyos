@@ -1,5 +1,5 @@
 #include "strlen.h"
-char * concat( const char *str1, const char *str2 ){
+char *concat( const char *str1, const char *str2 ){
 	char tmpReturn[strlen(str1)+strlen(str2)+1];
 	int counter=0;
 	while( *str1 != 0 ){
