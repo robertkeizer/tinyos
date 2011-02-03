@@ -10,7 +10,8 @@ void kmain( void* mbd, unsigned long magic ){
 		for( ;; );
 	};
 
-	kprint( substr( "TEST", 2, 4 ) );
+	kprint( "Testing" );
+	kprint( "!!" );
 
 	for( ;; );
 }
