@@ -15,9 +15,9 @@ void kprint( const char *str ){
         char *video = (char *)0xb8000 + ( current_col*2 ) + ( current_row*80*2 );
 
 	for( int currentChar=0; (char)str[currentChar] != 0; currentChar++ ){
-
-		if( (char)str[currentChar] == 'n' ){
-			kprint( "NN" );
+		if( (char)str[currentChar] == '\n' ){
+			current_row++;
+			current_col=0;
 		}else{
 			*video = (char)str[currentChar];
 			video++;
@@ -35,16 +35,12 @@ void kmain( void* mbd, unsigned long magic ){
 		for( ;; );
 	};
 
-	kprint( "Testing" );
-	kprint( "!!" );
-
-	current_row=1;
-	current_col=0;
+	kprint( "This is tinyos!!\n" );
 
 	if( strlen( "Test" ) != 4 ){
-		kprint( "Crap, strlen fails." );
+		kprint( "Crap, strlen fails.\n" );
 	}else{
-		kprint( "Yay, strlen works." );
+		kprint( "Yay, strlen works.\n" );
 	}
 
 	for( ;; );
