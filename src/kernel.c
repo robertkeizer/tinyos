@@ -15,11 +15,16 @@ void kprint( const char *str ){
         char *video = (char *)0xb8000 + ( current_col*2 ) + ( current_row*80*2 );
 
 	for( int currentChar=0; (char)str[currentChar] != 0; currentChar++ ){
-		*video = (char)str[currentChar];
-		video++;
-		*video = 0x07;
-		video++;
-		current_col++;
+
+		if( (char)str[currentChar] == 'n' ){
+			kprint( "NN" );
+		}else{
+			*video = (char)str[currentChar];
+			video++;
+			*video = 0x07;
+			video++;
+			current_col++;
+		}
 	}
 }
 
