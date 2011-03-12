@@ -11,6 +11,14 @@ int strlen( const char *str ){
 	return running_total;
 }
 
+void kclr( ){
+	char *video = (char *)0xb8000;
+	for( int x=0; x<4000; x++ ){
+		*video = 0;
+		video++;
+	}
+}
+
 void kprint( const char *str ){
         char *video = (char *)0xb8000 + ( current_col*2 ) + ( current_row*80*2 );
 
@@ -35,12 +43,14 @@ void kmain( void* mbd, unsigned long magic ){
 		for( ;; );
 	};
 
-	kprint( "This is tinyos!!\n" );
+	kclr();
+
+	kprint( "This is tinyos!\n" );
 
 	if( strlen( "Test" ) != 4 ){
-		kprint( "Crap, strlen fails.\n" );
+		kprint( "[ fail ] strlen fails.\n" );
 	}else{
-		kprint( "Yay, strlen works.\n" );
+		kprint( "[ good ] strlen works.\n" );
 	}
 
 	for( ;; );
