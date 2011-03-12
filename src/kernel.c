@@ -13,15 +13,14 @@ int strlen( const char *str ){
 
 void kprint( const char *str ){
         char *video = (char *)0xb8000 + ( current_col*2 ) + ( current_row*80*2 );
-        while( *str != 0 ){
-                *video = *str;
-                video++;
-                str++;
 
-                *video=0x07;
-                video++;
+	for( int currentChar=0; (char)str[currentChar] != 0; currentChar++ ){
+		*video = (char)str[currentChar];
+		video++;
+		*video = 0x07;
+		video++;
 		current_col++;
-        }
+	}
 }
 
 void kmain( void* mbd, unsigned long magic ){
@@ -32,7 +31,6 @@ void kmain( void* mbd, unsigned long magic ){
 	};
 
 	kprint( "Testing" );
-
 	kprint( "!!" );
 
 	current_row=1;
